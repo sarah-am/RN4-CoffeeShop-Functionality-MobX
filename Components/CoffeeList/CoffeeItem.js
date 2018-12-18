@@ -17,15 +17,16 @@ class CoffeeItem extends Component {
     });
   }
   render() {
+    const { coffeeShop } = this.props;
     return (
       <ImageBackground
-        source={{ uri: this.props.coffeeShop.background }}
+        source={{ uri: coffeeShop.background }}
         style={styles.background}
       >
         <View style={styles.overlay} />
         <ListItem
           button
-          onPress={() => this.handlePress(this.props.coffeeShop)}
+          onPress={() => this.handlePress(coffeeShop)}
           style={styles.listitem}
         >
           <Card style={styles.transparent}>
@@ -33,12 +34,12 @@ class CoffeeItem extends Component {
               <Left>
                 <Thumbnail
                   bordered
-                  source={{ uri: this.props.coffeeShop.img }}
+                  source={{ uri: coffeeShop.img }}
                   style={styles.thumbnail}
                 />
-                <Text style={styles.text}>{this.props.coffeeShop.name}</Text>
+                <Text style={styles.text}>{coffeeShop.name}</Text>
                 <Text note style={styles.text}>
-                  {this.props.coffeeShop.distance}
+                  {coffeeShop.distance}
                 </Text>
               </Left>
             </CardItem>
