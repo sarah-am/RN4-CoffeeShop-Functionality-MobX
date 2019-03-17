@@ -11,11 +11,11 @@ import styles from "./styles";
 import { withNavigation } from "react-navigation";
 
 class CoffeeItem extends Component {
-  handlePress() {
+  handlePress = () => {
     this.props.navigation.navigate("CoffeeDetail", {
       shop: this.props.coffeeShop
     });
-  }
+  };
   render() {
     const { coffeeShop } = this.props;
     return (
@@ -24,11 +24,7 @@ class CoffeeItem extends Component {
         style={styles.background}
       >
         <View style={styles.overlay} />
-        <ListItem
-          button
-          onPress={() => this.handlePress(coffeeShop)}
-          style={styles.listitem}
-        >
+        <ListItem button onPress={this.handlePress} style={styles.listitem}>
           <Card style={styles.transparent}>
             <CardItem style={styles.transparent}>
               <Left>

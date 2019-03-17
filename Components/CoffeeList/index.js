@@ -2,45 +2,33 @@ import React, { Component } from "react";
 import { observer } from "mobx-react";
 
 // NativeBase Components
-import { List, Content, Button, Text, Icon } from "native-base";
+import { List, Content } from "native-base";
 
 // Store
-import CoffeeStore from "../../store/coffeeStore";
+import coffeeStore from "../../store/coffeeStore";
 
 // Component
 import CoffeeItem from "./CoffeeItem";
+import CartButton from "../CartButton";
 
 class CoffeeList extends Component {
-  static navigationOptions = ({ navigation }) => ({
+  static navigationOptions = {
     title: "Coffee List",
     headerLeft: null,
-    headerRight: (
-      <Button
-        light
-        transparent
-        onPress={() => navigation.navigate("CoffeeCart")}
-      >
-        <Text>
-          <Icon
-            type="FontAwesome"
-            name="coffee"
-            style={{ color: "white", fontSize: 15 }}
-          />
-        </Text>
-      </Button>
-    )
-  });
+    headerRight: <CartButton />
+  };
+
   render() {
-    const coffeeshops = CoffeeStore.coffeeshops;
-    let ListItems;
+    const coffeeshops = coffeeStore.coffeeshops;
+    let shops;
     if (coffeeshops) {
-      ListItems = coffeeshops.map(coffeeShop => (
+      shops = coffeeshops.map(coffeeShop => (
         <CoffeeItem coffeeShop={coffeeShop} key={coffeeShop.id} />
       ));
     }
     return (
       <Content>
-        <List>{ListItems}</List>
+        <List>{shops}</List>
       </Content>
     );
   }
