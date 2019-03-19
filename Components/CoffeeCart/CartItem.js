@@ -2,8 +2,14 @@ import React, { Component } from "react";
 
 // NativeBase Components
 import { Text, Left, Body, Right, Button, ListItem, Icon } from "native-base";
+import { observer } from "mobx-react";
+import cartStore from "../../store/cartStore";
 
 class CartItem extends Component {
+  deletePress = () => {
+    cartStore.removeItemFromCart(this.props.item);
+  };
+
   render() {
     const { item } = this.props;
     return (
@@ -18,7 +24,7 @@ class CartItem extends Component {
           <Text style={{ color: "white" }}>{item.quantity}</Text>
         </Body>
         <Right>
-          <Button transparent>
+          <Button transparent onPress={this.deletePress}>
             <Icon name="trash" style={{ color: "white", fontSize: 21 }} />
           </Button>
         </Right>
@@ -27,4 +33,4 @@ class CartItem extends Component {
   }
 }
 
-export default CartItem;
+export default observer(CartItem);

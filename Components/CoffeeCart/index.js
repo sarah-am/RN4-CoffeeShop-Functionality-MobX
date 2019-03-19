@@ -19,7 +19,7 @@ class CoffeeCart extends Component {
     return (
       <List>
         {cartItems}
-        <Button full danger>
+        <Button full danger onPress={() => cartStore.checkoutCart()}>
           <Text>Checkout</Text>
         </Button>
       </List>
